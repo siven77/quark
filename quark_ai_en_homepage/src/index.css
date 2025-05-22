@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+ 
+    --primary: 196 100% 50%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 196 100% 50%;
+    --secondary-foreground: 222 47% 11%;
+ 
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+ 
+    --accent: 196 100% 50%;
+    --accent-foreground: 222 47% 11%;
+ 
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 84% 5%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222 47% 5%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222 47% 7%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222 47% 7%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 196 100% 50%;
+    --primary-foreground: 222 47% 11%;
+ 
+    --secondary: 196 100% 50%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+ 
+    --accent: 196 100% 50%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 213 27% 84%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-quark-black text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* 自定義樣式 */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-quark-blue to-quark-cyan;
+  background-size: 200% 200%;
+  animation: gradient-flow 8s ease infinite;
+}
+
+.shimmer-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-quark-blue to-white;
+  background-size: 200% 100%;
+  animation: text-shimmer 8s ease-in-out infinite;
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(10, 14, 23, 0.8) 0%, rgba(0, 10, 30, 0.95) 100%);
+}
+
+.card-gradient {
+  background: linear-gradient(135deg, rgba(10, 14, 23, 0.8) 0%, rgba(0, 10, 30, 0.95) 100%);
+}
+
+.glass-effect {
+  @apply bg-opacity-20 backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-20 border border-white border-opacity-20 dark:border-gray-800;
+}
+
+.strategy-card {
+  @apply relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-quark-blue/20;
+}
+
+.strategy-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 153, 255, 0.1) 0%, rgba(10, 14, 23, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.strategy-card:hover::before {
+  opacity: 1;
+}
+
+.feature-icon {
+  @apply flex items-center justify-center w-12 h-12 rounded-full bg-quark-black-800 text-quark-blue mb-4 transition-all duration-300;
+}
+
+.feature-card:hover .feature-icon {
+  @apply bg-quark-blue text-white transform scale-110;
+}
+
+/* 網絡線條背景 */
+.network-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.network-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(0, 153, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(0, 229, 255, 0.1) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.network-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.2;
+}
+
+/* 響應式設計輔助類 */
+.section-padding {
+  @apply py-16 md:py-24;
+}
+
+.container-padding {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* 動畫效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-500 {
+  animation-delay: 0.5s;
+}
